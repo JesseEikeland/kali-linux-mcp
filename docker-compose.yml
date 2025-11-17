@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  kali-mcp-server:
+    build: .
+    container_name: kali-security-mcp
+    stdin_open: true
+    tty: true
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+    network_mode: host
+    volumes:
+      - ./output:/output
+    environment:
+      - PYTHONUNBUFFERED=1
+      - MCP_SERVER_NAME=kali-security-tools
+    restart: unless-stopped
